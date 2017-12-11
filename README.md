@@ -7,3 +7,4 @@ ERP System created on this technologies:
 * Angular 5
 * Ionic 3 and StencilJS for PWA
 
+The license of the project is LGPL 3.0
