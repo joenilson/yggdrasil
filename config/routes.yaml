@@ -1,3 +1,49 @@
+#index:
+#    path: /
+#    defaults: { _controller: 'App\Controller\DefaultController::index' }
 index:
     path: /
-    defaults: { _controller: 'App\Controller\DefaultController::index' }
+    defaults: { _controller: App\Controller\DefaultController::index, _locale: es }
+    methods: [GET, POST]
+    requirements:
+        _locale: '%app.locales%'
+
+login:
+    path: /login
+    defaults: { _controller: App\Controller\UserController::login, _locale: es }
+    requirements:
+        _locale: '%app.locales%'
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+home:
+    path: /home
+    defaults: { _controller: App:Default:index, _locale: es  }
+    methods: [GET, POST]
+    requirements:
+        _locale: '%app.locales%'
+
+config_system:
+    path: /config_system
+    defaults: { _controller: App:Config:configSystem, _locale: es }
+    methods: [GET, POST]
+    requirements:
+        _locale: '%app.locales%'
+
+options:
+    path: /work/options
+    defaults: { _controller: App:Config:optionsSystem, _locale: es }
+    methods: [GET, POST]
+    requirements:
+        _locale: '%app.locales%'
+
+user_info:
+    path: /work/user_info
+    defaults: { _controller: App:User:userInfo, _locale: es }
+    methods: [GET, POST]
+    requirements:
+        _locale: '%app.locales%'

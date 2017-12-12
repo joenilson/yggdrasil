@@ -5,16 +5,12 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     public function index()
     {
-        return new Response('
-        <html>
-            <body>
-                <h1>Hello Symfony 4 World</h1>
-            </body>
-        </html>
-    '); 
+        return $this->render('index.html.twig', [
+            'greetings' => 'Hola mundo S4'
+        ]);
     }
 }

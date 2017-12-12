@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block menu %}{% endblock %}
+
+{% block content %}
+    <div class="container has-text-centered">
+        <div class="column is-4 is-offset-4 box">
+            <form method="POST" name="login_form">
+                <p class="title title-dark">{{'app-config-title'|trans}}</p>
+                <p class="subtitle has-text-dark"></p>
+                <div class="notification is-warning has-text-danger">
+                  {{status|trans}}
+                </div>
+                <div class="field">
+                    <label class="label">{{'app-config-dbuser'|trans}}</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" name="dbuser" type="text" placeholder="{{'app-config-dbuser'|trans}}" value="" required="required">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">{{'app-config-dbpass'|trans}}</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" name="dbpass" type="password" placeholder="{{'app-config-dbpass'|trans}}" value="" required="required">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">{{'app-config-dbname'|trans}}</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" name="dbname" type="text" placeholder="{{'app-config-dbname'|trans}}" value="asgarddb" required="required">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-database"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">{{'app-config-dbhost'|trans}}</label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input class="input" name="dbhost" type="text" placeholder="{{'app-config-dbhost'|trans}}" value="localhost" required="required">
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-home"></i>
+                        </span>
+                    </div>
+                </div>                
+                <div class="field">
+                    <label class="label">{{'app-config-dbtype'|trans}}</label>
+                    <div class="control select">
+                        <select name="dbtype" required="required">
+                            <option value="">{{'app-config-dbtype'|trans}}</option>
+                            <option value="pgsql">PostgreSQL</option>
+                            <option value="mysql">MySQL</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <p class="subtitle has-text-dark">{{'app-config-default-user'|trans|raw}}</p>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button name="action" value="save" type="submit" class="button is-link">{{'app-config-btn-submit'|trans}}</button>
+                    </div>
+                    <div class="control">
+                        <button type="reset" class="button is-text">{{'app-config-btn-cancel'|trans}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.login_form.dbuser.focus();
+    </script>
+{% endblock %}

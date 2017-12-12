@@ -1,0 +1,182 @@
+{% use "form_div_layout.html.twig" %}
+
+{# checkbox #}
+{%- block checkbox_widget -%}
+    {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' switch')|trim }) %}
+    <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />
+    {{- form_label(form) -}}
+{%- endblock checkbox_widget -%}
+
+{# choice type#}
+{%- block choice_widget_collapsed -%}
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+        {% set required = false %}
+    {%- endif -%}
+    <div class="select">
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {%- if placeholder is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {%- endif -%}
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {{- block('choice_widget_options') -}}
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+        {%- set options = choices -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+    </div>
+{%- endblock choice_widget_collapsed -%}
+
+{# buttons #}
+{%- block button_widget -%}
+    {%- if label is not same as(false) and label is empty -%}
+        {%- if label_format is not empty -%}
+            {% set label = label_format|replace({
+                '%name%': name,
+                '%id%': id,
+            }) %}
+        {%- else -%}
+            {% set label = name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    {%- if type == 'submit' -%}
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' button is-primary')|trim }) %}
+    {%- else -%}
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' button')|trim }) %}
+    {%- endif -%}
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ translation_domain is same as(false) ? label : label|trans({}, translation_domain) }}</button>
+{%- endblock button_widget -%}
+
+{# Labels #}
+{% block form_label -%}
+    {%- if label is same as(false) -%}
+        <div class="{{ block('form_label_class') }}"></div>
+    {%- else -%}
+        {%- if expanded is not defined or not expanded -%}
+            {%- set label_attr = label_attr|merge({class: (label_attr.class|default(''))|trim}) -%}
+        {%- endif -%}
+        {%- set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' ' ~ block('form_label_class'))|trim}) -%}
+        {{- parent() -}}
+    {%- endif -%}
+{%- endblock form_label %}
+
+{% block form_label_class -%}
+label
+{%- endblock form_label_class %}
+
+{# form_widget #}
+{%- block form_widget_simple -%}
+    {%- set type = type|default('text') -%}
+    {%- if type == 'file' -%}
+    <label class="file-label">
+    {%- endif -%}
+    {%- if type == 'text' or type == 'password' or type == 'email' or type == 'tel' -%}
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' input')|trim }) %}
+    {%- elseif type == 'file' -%}
+        {% set attr = attr|merge({ 'class': (attr.class|default('') ~ ' file-input')|trim }) %}
+    {%- endif -%}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    {%- if type == 'file' -%}
+        <span class="file-cta">
+        <span class="file-icon">
+          <i class="fa fa-upload"></i>
+        </span>
+        <span class="file-label">
+          {{label|trans}}
+        </span>
+      </span>
+      </label>
+    {%- endif -%}
+{%- endblock form_widget_simple -%}
+
+
+{#dtepicker #}
+{% block from_datepicker_widget %}
+    <div class="text_widget">
+        {{ block('datepicker') }}
+    </div>
+{% endblock %}
+
+{# Rows #}
+{% block form_row -%}
+    {%- if expanded is defined and expanded -%}
+        {{ block('fieldset_form_row') }}
+    {%- else -%}
+        <div class="field is-horizontal">
+        <div class="field-label{% if (not compound or force_error|default(false)) and not valid %} is-invalid{% endif %}">
+            {{- form_label(form) -}}
+    {##}</div>
+        <div class="{{ block('form_group_class') }}">
+            <div class="field">
+                <div class="control">
+                {{- form_widget(form) -}}
+                {{- form_errors(form) -}}
+                </div>
+            </div>
+        </div>
+        </div>
+    {%- endif -%}
+{%- endblock form_row %}
+
+{% block fieldset_form_row -%}
+    <fieldset class="field">
+        <div class="row{% if (not compound or force_error|default(false)) and not valid %} is-invalid{% endif %}">
+            {{- form_label(form) -}}
+            <div class="{{ block('form_group_class') }}">
+                {{- form_widget(form) -}}
+                {{- form_errors(form) -}}
+            </div>
+        </div>
+{##}</fieldset>
+{%- endblock fieldset_form_row %}
+
+{% block submit_row -%}
+    <div class="field">{#--#}
+        <div class="{{ block('form_label_class') }}"></div>{#--#}
+        <div class="{{ block('form_group_class') }}">
+            {{- form_widget(form) -}}
+        </div>{#--#}
+    </div>
+{%- endblock submit_row %}
+
+{% block reset_row -%}
+    <div class="field">{#--#}
+        <div class="{{ block('form_label_class') }}"></div>{#--#}
+        <div class="{{ block('form_group_class') }}">
+            {{- form_widget(form) -}}
+        </div>{#--#}
+    </div>
+{%- endblock reset_row %}
+
+{% block checkbox_row -%}
+    <div class="field is-horizontal">
+        <div class="field-label{% if (not compound or force_error|default(false)) and not valid %} is-invalid{% endif %}">
+    {##}</div>
+        <div class="{{ block('form_group_class') }}">
+            {{- form_widget(form) -}}
+            {{- form_errors(form) -}}
+        </div>{#--#}
+    </div>
+{%- endblock checkbox_row %}
+
+{% block form_group_class -%}
+field-body
+{%- endblock form_group_class %}
+
+{% block attributes -%}
+    {%- for attrname, attrvalue in attr -%}
+        {{- " " -}}
+        {%- if attrname in ['placeholder', 'title'] -%}
+            {{- attrname }}="{{ translation_domain is same as(false) ? attrvalue : attrvalue|trans({}, translation_domain) }}"
+        {%- elseif attrname == 'class' -%}
+            {{- attrname }}="{{ attrvalue }}"
+        {%- elseif attrvalue is same as(true) -%}
+            {{- attrname }}="{{ attrname }}"
+        {%- elseif attrvalue is not same as(false) -%}
+            {{- attrname }}="{{ attrvalue }}"
+        {%- endif -%}
+    {%- endfor -%}
+{%- endblock attributes -%}

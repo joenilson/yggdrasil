@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+{% block menu %}{% endblock %}
+{% block content %}
+  <div class="container has-text-centered">
+    <div class="column is-4 is-offset-4">
+      <h3 class="title has-text-white">{{'app-login-title'|trans}}</h3>
+      <p class="subtitle has-text-white">{{'app-login-subtitle'|trans}}</p>
+      <div class="box box-login">
+        <figure class="avatar">
+          <img src="https://placehold.it/128x128">
+        </figure>
+        <form class="form" action="{{path('login_check')}}" method="POST">
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+          <input type="hidden" name="_target_path" value="/home" />
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" name="_username" type="text" placeholder="{{'app-login-username'|trans}}" required="required">
+              <span class="icon is-small is-left">
+                <i class="fa fa-user"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" name="_password" type="password" placeholder="{{'app-login-password'|trans}}" required="required">
+              <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <button type="submit" class="button is-centered is-info">{{'app-login-btn-login'|trans}}</button>
+        </form>
+      </div>
+      <p class="has-text-white">
+        <a href="../">{{'app-login-btn-signup'|trans}}</a>
+        &nbsp;·&nbsp;
+        <a href="../">{{'app-login-btn-forgot-password'|trans}}</a>
+        &nbsp;·&nbsp;
+        <a href="../">{{'app-login-btn-need-help'|trans}}</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

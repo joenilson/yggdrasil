@@ -1,0 +1,47 @@
+@charset "utf-8";
+//Bulma SASS
+@import "../../node_modules/bulma/sass/utilities/initial-variables";
+@import "../../node_modules/bulma/sass/utilities/functions";
+// Aqui van todas la variables personalizadas que necesitemos
+@import "../../node_modules/bulma/bulma";
+@import "../../node_modules/bulma-extensions/extensions.sass";
+@import "../../node_modules/flatpickr/dist/flatpickr";
+.title-dark {
+    color: #000000 !important;
+}
+
+.navbar-item.is-mega {
+    position: static;
+    .is-mega-menu-title {
+        margin-bottom: 0;
+        padding: .375rem 1rem;
+    }
+}
+
+.user-image img {
+    background: #fff;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+    box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+}
+
+.avatar {
+    margin-top: -70px;
+    padding-bottom: 20px;
+}
+
+.avatar img {
+    padding: 5px;
+    background: #fff;
+    border-radius: 50%;
+    -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+    box-shadow: 0 2px 3px rgba(10, 10, 10, .1), 0 0 0 1px rgba(10, 10, 10, .1);
+}
+
+.box-login {
+    margin-top: 5rem;
+}
+
+label.required:before {
+    content: "* " !important;
+}

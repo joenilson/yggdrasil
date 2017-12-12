@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% if form is defined %}
+{% form_theme form '@AppBundle/Form/bulma_horizontal_layout.html.twig' %}
+{% endif %}
+{% block content %}
+    {% if verify_database != 'app-db-created-success' %}
+        <div class="container has-text-centered">
+            <span class="title">{{'app-db-non-exists'|trans}}</span>&nbsp;
+            <a href="{{path('config_system')}}" id="btn_create_db" class="button is-warning">
+                <span class="icon is-small">
+                    <i class="fa fa-database"></i>
+                </span>&nbsp;
+                {{'app-create-db-button-text'|trans}}
+            </a>
+        </div>
+    {% else %}
+        {% if app_configured %}
+            <div class="container">
+                <h1 class="title">
+                    {{'app-main-title-welcome'|trans}}
+                </h1>
+                <h2 class="subtitle">
+                    {{'app-main-subtitle-welcome'|trans}}
+                </h2>
+            </div>
+        {% else %}
+            {% if form is defined %}
+            <div class="container">
+                <div class="column is-6 is-offset-3">
+                    <h1 class="title">
+                        {{'app-config-incomplete-title'|trans}}
+                    </h1>
+                    <h2 class="subtitle">
+                        {{'app-config-incomplete-subtitle'|trans}}
+                        <a href="{{path('options')}}" class="button is-medium">{{'app-options-text'|trans}}</a>
+                    </h2>
+
+                    <div class="box">
+                        {{form_start(form)}}
+                        {{form_end(form)}}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block init_modal_db %}{% endblock %}
