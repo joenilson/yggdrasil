@@ -1,0 +1,74 @@
+User:
+    type: entity
+    table: users
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+        firstname:
+            type: string
+            nullable: false
+            length: 120
+            options:
+                fixed: false
+        lastname:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 140
+            options:
+                fixed: false
+        status:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: true
+        datecreation:
+            type: datetime
+            nullable: false
+        usercreation:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+        datemodified:
+            type: datetime
+            nullable: true
+        usermodify:
+            type: string
+            nullable: true
+            length: 25
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 120
+            options:
+                fixed: false
+        locale:
+            type: string
+            nullable: false
+            length: 5
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

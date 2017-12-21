@@ -1,480 +1,235 @@
 <?php
-
 namespace App\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
 
-class User implements UserInterface
+/**
+ * Users
+ *
+ * @ORM\Table(name="users")
+ * @ORM\Entity
+ */
+class User
 {
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="users_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=25, nullable=false)
      */
     private $username;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="firstname", type="string", length=120, nullable=false)
      */
-    private $fullname;
+    private $firstname;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="lastname", type="string", length=25, nullable=false)
      */
-    private $image;
+    private $lastname;
 
     /**
      * @var string
-     */
-    private $locale;
-
-    /**
-     * @var string
-     */
-    private $password;
-
-    /**
-     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=140, nullable=false)
      */
     private $email;
 
     /**
      * @var string
-     */
-    private $role;
-
-    /**
-     * @var bool
-     */
-    private $isActive;
-
-    /**
-     * @var string
-     */
-    private $lastIp;
-
-    /**
-     * @var \DateTime
-     */
-    private $lastTime;
-
-    /**
-     * @var string
-     */
-    private $sessionToken;
-
-    /**
-     * @var \DateTime
-     */
-    private $dateCreation;
-
-    /**
-     * @var string
-     */
-    private $userCreation;
-
-    /**
-     * @var \DateTime
-     */
-    private $dateModify;
-
-    /**
-     * @var string
-     */
-    private $userModify;
-
-    public function getRoles()
-    {
-        return array($this->getRole());
-    }
-
-    public function getSalt()
-    {
-        return null;
-    }
-
-    public function eraseUserCredentials()
-    {
-
-    }
-
-    public function eraseCredentials()
-    {
-        
-    }
-
-    public function getOldpassword()
-    {
-
-    }
-
-    public function setOldpassword()
-    {
-        
-    }
-
-    /**
-     * Get id
      *
-     * @return int
+     * @ORM\Column(name="status", type="string", length=1, nullable=false)
      */
+    private $status;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datecreation", type="datetime", nullable=false)
+     */
+    private $datecreation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usercreation", type="string", length=25, nullable=false)
+     */
+    private $usercreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datemodified", type="datetime", nullable=true)
+     */
+    private $datemodified;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usermodify", type="string", length=25, nullable=true)
+     */
+    private $usermodify;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=120, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="locale", type="string", length=5, nullable=false)
+     */
+    private $locale;
+
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return User
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
     public function getUsername()
     {
         return $this->username;
     }
 
-    /**
-     * Set fullname
-     *
-     * @param string $fullname
-     */
-    public function setFullname($fullname)
+    public function getFirstname()
     {
-        $this->fullname = $fullname;
-
-        return $this;
+        return $this->firstname;
     }
 
-    /**
-     * Get fullname
-     *
-     * @return string
-     */
-    public function getFullname()
+    public function getLastname()
     {
-        return $this->fullname;
+        return $this->lastname;
     }
 
-    /**
-     * Set image
-     *
-     * @param string $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set locale
-     *
-     * @param string $locale
-     */
-    public function setLocale($locale)
-    {
-        $this->locale = $locale;
-
-        return $this;
-    }
-
-    /**
-     * Get locale
-     *
-     * @return string
-     */
-    public function getLocale()
-    {
-        return $this->locale;
-    }
-
-    /**
-     * Set role
-     *
-     * @param string $role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get role
-     *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return Users
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Users
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
     public function getEmail()
     {
         return $this->email;
     }
 
-    /**
-     * Set isActive
-     *
-     * @param boolean $isActive
-     *
-     * @return Users
-     */
-    public function setIsActive($isActive)
+    public function getStatus()
     {
-        $this->isActive = $isActive;
+        return $this->status;
+    }
 
+    public function getDatecreation()
+    {
+        return $this->datecreation;
+    }
+
+    public function getUsercreation()
+    {
+        return $this->usercreation;
+    }
+
+    public function getDatemodified()
+    {
+        return $this->datemodified;
+    }
+
+    public function getUsermodify()
+    {
+        return $this->usermodify;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getLocale()
+    {
+        return $this->locale;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
         return $this;
     }
 
-    /**
-     * Get isActive
-     *
-     * @return bool
-     */
-    public function getIsActive()
+    public function setUsername($username)
     {
-        return $this->isActive;
-    }
-
-    /**
-     * Set lastIp
-     *
-     * @param string $lastIp
-     *
-     * @return Users
-     */
-    public function setLastIp($lastIp)
-    {
-        $this->lastIp = $lastIp;
-
+        $this->username = $username;
         return $this;
     }
 
-    /**
-     * Get lastIp
-     *
-     * @return string
-     */
-    public function getLastIp()
+    public function setFirstname($firstname)
     {
-        return $this->lastIp;
-    }
-
-    /**
-     * Set lastTime
-     *
-     * @param \DateTime $lastTime
-     *
-     * @return Users
-     */
-    public function setLastTime($lastTime)
-    {
-        $this->lastTime = $lastTime;
-
+        $this->firstname = $firstname;
         return $this;
     }
 
-    /**
-     * Get lastTime
-     *
-     * @return \DateTime
-     */
-    public function getLastTime()
+    public function setLastname($lastname)
     {
-        return $this->lastTime;
-    }
-
-    /**
-     * Set sessionToken
-     *
-     * @param string $sessionToken
-     *
-     * @return Users
-     */
-    public function setSessionToken($sessionToken)
-    {
-        $this->sessionToken = $sessionToken;
-
+        $this->lastname = $lastname;
         return $this;
     }
 
-    /**
-     * Get sessionToken
-     *
-     * @return string
-     */
-    public function getSessionToken()
+    public function setEmail($email)
     {
-        return $this->sessionToken;
-    }
-
-    /**
-     * Set dateCreation
-     *
-     * @param \DateTime $dateCreation
-     *
-     * @return Users
-     */
-    public function setDateCreation($dateCreation)
-    {
-        $this->dateCreation = $dateCreation;
-
+        $this->email = $email;
         return $this;
     }
 
-    /**
-     * Get dateCreation
-     *
-     * @return \DateTime
-     */
-    public function getDateCreation()
+    public function setStatus($status)
     {
-        return $this->dateCreation;
-    }
-
-    /**
-     * Set userCreation
-     *
-     * @param string $userCreation
-     *
-     * @return Users
-     */
-    public function setUserCreation($userCreation)
-    {
-        $this->userCreation = $userCreation;
-
+        $this->status = $status;
         return $this;
     }
 
-    /**
-     * Get userCreation
-     *
-     * @return string
-     */
-    public function getUserCreation()
+    public function setDatecreation(\DateTime $datecreation)
     {
-        return $this->userCreation;
-    }
-
-    /**
-     * Set dateModify
-     *
-     * @param \DateTime $dateModify
-     *
-     * @return Users
-     */
-    public function setDateModify($dateModify)
-    {
-        $this->dateModify = $dateModify;
-
+        $this->datecreation = $datecreation;
         return $this;
     }
 
-    /**
-     * Get dateModify
-     *
-     * @return \DateTime
-     */
-    public function getDateModify()
+    public function setUsercreation($usercreation)
     {
-        return $this->dateModify;
-    }
-
-    /**
-     * Set userModify
-     *
-     * @param string $userModify
-     *
-     * @return Users
-     */
-    public function setUserModify($userModify)
-    {
-        $this->userModify = $userModify;
-
+        $this->usercreation = $usercreation;
         return $this;
     }
 
-    /**
-     * Get userModify
-     *
-     * @return string
-     */
-    public function getUserModify()
+    public function setDatemodified(\DateTime $datemodified)
     {
-        return $this->userModify;
+        $this->datemodified = $datemodified;
+        return $this;
     }
+
+    public function setUsermodify($usermodify)
+    {
+        $this->usermodify = $usermodify;
+        return $this;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+
+    public function setLocale($locale)
+    {
+        $this->locale = $locale;
+        return $this;
+    }
+
+
 }
+

@@ -1,0 +1,42 @@
+UserRole:
+    type: entity
+    table: user_roles
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        companyId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: company_id
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        roleName:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: role_name
+        datecreation:
+            type: datetime
+            nullable: false
+        usercreation:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

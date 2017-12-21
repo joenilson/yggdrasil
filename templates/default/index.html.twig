@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% if form is defined %}
-{% form_theme form '@AppBundle/Form/bulma_horizontal_layout.html.twig' %}
+{% form_theme form 'Form/bulma_horizontal_layout.html.twig' %}
 {% endif %}
 {% block content %}
     {% if verify_database != 'app-db-created-success' %}

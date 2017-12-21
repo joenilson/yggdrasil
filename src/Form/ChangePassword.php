@@ -22,14 +22,9 @@ class ChangePassword extends AbstractType
                 'constraints' => array(
                     new NotBlank()
                 ),
-                'label' => 'app-login-username'
-                
-            ))
-            ->add('email', EmailType::class, array(
-                'constraints' => array(
-                    new NotBlank()
-                ),
-                'label' => 'app-login-email'
+                'label' => 'app-login-username',
+                'attr' => ['class' => 'is-static', 'readonly' => true]
+
             ))
             ->add('oldpassword', PasswordType::class, array(
                 'constraints' => array(
@@ -41,10 +36,10 @@ class ChangePassword extends AbstractType
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'app-login-password'],
                 'second_options' => ['label' => 'app-login-password-confirm'],
-                
+
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'app-login-btn-save', 
+                'label' => 'app-login-btn-save',
                 'attr' => ['class' => 'button is-primary']
             ]);
     }
@@ -52,7 +47,7 @@ class ChangePassword extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           
+
         ]);
     }
 }

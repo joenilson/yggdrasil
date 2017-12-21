@@ -1,15 +1,118 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
+<html class="has-navbar-fixed-top">
+<head>
+    <meta charset="UTF-8" />
+    <title>
+        {% block title %}Welcome!{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('/vendors/font-awesome/css/font-awesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/build/css/app.css') }}" /> {% block stylesheets %}{% endblock %}
+    <!-- <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script> !-->
+    <script src="{{ asset('/build/js/app.js') }}"></script>
+    {% block javascript_header %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+    <section id="menu">
+    <nav class="navbar is-dark is-fixed-top" data-bulma="navbar" role="navigation" aria-label="dropdown navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="{{path('home')}}">
+                    ASGARD
+                </a>
+                {% set array_locales = locales | split('|') %}
+                <div class="navbar-item">
+                    <div class="buttons has-addons">
+                    {% for lang in array_locales %}
+                            <a class="button is-small is-warning {% if app.request.locale == lang %}is-active{% else %}is-outlined{% endif %}" href="{{path(app.request.attributes.get('_route'))}}?lang={{lang}}">
+                                {{lang}}
+                            </a>
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="navbar-burger burger" data-trigger data-target="navbarMenuHero">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            {% block menu %}
+            <div id="navbarMenuHero" class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item" href="{{path('home')}}">
+                        {{'app-home-text'|trans}}
+                    </a>
+                    <a class="navbar-item">
+                        {{'app-options-text'|trans}}
+                    </a>
+                    <a class="navbar-item">
+                        {{'app-options-text'|trans}}
+                    </a>
+                    <a class="navbar-item">
+                        {{'app-docs-text'|trans}}
+                    </a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% include 'menu.html' %}
+                    <a class="navbar-item" href="{{path('user_info')}}">
+                        <span class="icon">
+                          <i class="fa fa-user"></i>
+                        </span>
+                        <span>{{user_info.firstname}} {{user_info.lastname}}</span>
+                    </a>
+                    <span class="navbar-item">
+                        <a href="{{path('logout')}}" class="button is-inverted" id="btn_dologin">
+                          <span class="icon">
+                            <i class="fa fa-sign-out"></i>
+                          </span>
+                    <span>{{'app-close-session'|trans}}</span>
+                    </a>
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endblock %}
+        </div>
+    </nav>
+    </section>
+    {% block body %}
+    <section class="hero is-primary is-bold is-fullheight">
+        <div class="hero-head is-dark">
+            {% block head %}
+
+            {% endblock %}
+        </div>
+        <div class="hero-body">
+            {% block content %}{% endblock %}
+        </div>
+        {% block footer %}
+        <div class="hero-foot">
+            {% for label, messages in app.flashes %} {% for message in messages %}
+            <div class="notification has-text-centered is-{{label}}">
+                <button class="delete notification-close"></button> {{message|trans|raw}}
+            </div>
+            {% endfor %} {% endfor %} {% block footer_links %}
+            <nav class="tabs is-boxed is-fullwidth">
+                <div class="container"></div>
+            </nav>
+            {% endblock %}
+        </div>
         {% endblock %}
-        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        <script src="{{ asset('build/js/app.js') }}"></script>
-        {% block javascripts %}{% endblock %}
-    </body>
+    </section>
+    {% endblock %}
+    {% block modals %}{% endblock %}
+    {% block javascripts %}
+    <script>
+        //flatpickr.localize(flatpickr.l10ns.{{app.request.locale}});
+        //flatpickr("#datepicker_userpreferences");
+        //$('#datepicker_userpreferences').flatpickr();
+        //function showDatepicker(element)
+        //{
+        //    flatpickr(element, {});
+        //}
+    </script>
+    {% endblock %}
+</body>
+
 </html>

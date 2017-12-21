@@ -2,7 +2,7 @@
 
 namespace App\EventSubscriber;
 
-use App\Model\User;
+use App\Model\Login;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -46,17 +46,17 @@ class UserLoginRouteSubscriber implements EventSubscriberInterface
             return false;
         }
 
-        if (!$this->tokenStorageInterface->getToken() instanceof User) {
+        if (!$this->tokenStorageInterface->getToken() instanceof Login) {
             $goLogin = false;
             return false;
         }
-        
+
         return $event->setResponse(
             new RedirectResponse(
                 $this->routerInterface->generate('home')
             )
         );
-        
+
     }
     public static function getSubscribedEvents()
     {

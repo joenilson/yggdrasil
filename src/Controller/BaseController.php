@@ -14,8 +14,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class BaseController extends Controller 
+class BaseController extends Controller
 {
     public $baseConfig;
     public $i18n;
@@ -34,13 +35,15 @@ class BaseController extends Controller
     public $app_configured = false;
 
     public $encoder;
+    public $passencoder;
     public $request;
     public $session;
     public $container;
-    public function __construct(EntityManagerInterface $em, EncoderFactoryInterface $encoder, RequestStack $requestStack, SessionInterface $session, ContainerInterface $container, TelemetrySubscriber $telemetry)
+    public function __construct(EntityManagerInterface $em, EncoderFactoryInterface $encoder, RequestStack $requestStack, SessionInterface $session, ContainerInterface $container, TelemetrySubscriber $telemetry, UserPasswordEncoderInterface $passencoder)
     {
         $this->em = $em;
         $this->encoder = $encoder;
+        $this->passencoder = $passencoder;
         $this->app_configured = $telemetry->verifyAdminPassword();
         $this->request = $requestStack->getCurrentRequest();
         $this->session = $session;
@@ -49,19 +52,18 @@ class BaseController extends Controller
 
     public function initDatabase()
     {
-        /*
+
         $this->databaseConfig = [
-            'dbport'=> $this->getParameter('database_port'),
-            'dbhost'=> $this->container->getParameter('database_host'),
-            'dbname'=> $this->container->getParameter('database_name'),
-            'dbuser'=> $this->container->getParameter('database_user'),
-            'dbpass'=> $this->container->getParameter('database_password'),
-            'dbtype'=> $this->container->getParameter('database_driver')
+            'dbport'=> $_SERVER['database_port'],
+            'dbhost'=> $_SERVER['database_host'],
+            'dbname'=> $_SERVER['database_name'],
+            'dbuser'=> $_SERVER['database_user'],
+            'dbpass'=> $_SERVER['database_password'],
+            'dbtype'=> $_SERVER['database_driver']
         ];
-        */
-        dump($this->getParameter('DATABASE_URL'));
         $conn = new BaseConfig();
-        return $conn->verifyDatabase($this->databaseConfig);
+        //return $conn->verifyDatabase($this->databaseConfig);
+        return $conn->verifyDatabase($_SERVER['DATABASE_URL']);
     }
 
     public function verifyDatabase()

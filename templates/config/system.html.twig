@@ -4,76 +4,123 @@
 
 {% block content %}
     <div class="container has-text-centered">
-        <div class="column is-4 is-offset-4 box">
-            <form method="POST" name="login_form">
+        <div class="column is-8 is-offset-2 box">
+            <form method="POST" name="config_form" class="control">
                 <p class="title title-dark">{{'app-config-title'|trans}}</p>
-                <p class="subtitle has-text-dark"></p>
-                <div class="notification is-warning has-text-danger">
-                  {{status|trans}}
+                <p class="subtitle has-text-dark">&nbsp;</p>
+                <div class="notification is-warning has-text-dark has-text-centered">
+                    <b>{{status|trans}}</b>
                 </div>
-                <div class="field">
-                    <label class="label">{{'app-config-dbuser'|trans}}</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input" name="dbuser" type="text" placeholder="{{'app-config-dbuser'|trans}}" value="" required="required">
-                        <span class="icon is-small is-left">
-                            <i class="fa fa-user"></i>
-                        </span>
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label has-text-left">{{'app-config-dbuser'|trans}}</label>
+                            <p class="control is-expanded has-icons-left has-icons-right">
+                                <input class="input" name="dbuser" type="text" placeholder="{{'app-config-dbuser'|trans}}" value="" required="required">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label has-text-left">{{'app-config-dbpass'|trans}}</label>
+                            <p class="control is-expanded has-icons-left has-icons-right">
+                                <input class="input" name="dbpass" type="password" placeholder="{{'app-config-dbpass'|trans}}" value="" required="required">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+                            <label class="label has-text-left">{{'app-config-dbname'|trans}}</label>
+                            <p class="control has-icons-left has-icons-right">
+                                <input class="input" name="dbname" type="text" placeholder="{{'app-config-dbname'|trans}}" value="yggdrasildb" required="required">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-database"></i>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field is-horizontal">
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label has-text-left">{{'app-config-dbhost'|trans}}</label>
+                            <p class="control is-expanded has-icons-left has-icons-right">
+                                <input class="input" name="dbhost" type="text" placeholder="{{'app-config-dbhost'|trans}}" value="localhost" required="required">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-home"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="field">
+
+
+                        <label class="label has-text-left">{{'app-config-dbtype'|trans}} - {{'app-config-dbport'|trans}}</label>
+                        <div class="field has-addons">
+
+                            <p class="control is-expanded">
+                                <div class="select is-fullwidth">
+                                    <select name="dbtype" required="required">
+                                        <option value="">{{'app-config-dbtype'|trans}}</option>
+                                        <option value="pgsql">PostgreSQL</option>
+                                        <option value="mysql">MySQL</option>
+                                    </select>
+                                </div>
+                            </p>
+                            <p class="control has-icons-left has-icons-right">
+                                <input class="input" name="dbport" width="90px" type="number" placeholder="{{'app-config-dbport'|trans}}" value="" required="required"/>
+                                <span class="icon is-small is-left">
+                                    <span class="fa fa-chain"></span>
+                                </span>
+                            </p>
+                        </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="field">
-                    <label class="label">{{'app-config-dbpass'|trans}}</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input" name="dbpass" type="password" placeholder="{{'app-config-dbpass'|trans}}" value="" required="required">
-                        <span class="icon is-small is-left">
-                            <i class="fa fa-lock"></i>
-                        </span>
-                    </div>
+                <div class="field has-text-centered">
+                    <input id="config_dev" type="checkbox" name="config_dev" class="switch is-danger is-rtl">
+                    <label class="label has-text-danger" for="config_dev">
+                        <span class="fa fa-warning"></span>
+                        <span>{{'app-config-dev'|trans}}</span>
+                    </label>
+                    <p class="help is-danger">{{'app-config-dev-help-text'|trans}}</p>
                 </div>
 
-                <div class="field">
-                    <label class="label">{{'app-config-dbname'|trans}}</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input" name="dbname" type="text" placeholder="{{'app-config-dbname'|trans}}" value="asgarddb" required="required">
-                        <span class="icon is-small is-left">
-                            <i class="fa fa-database"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">{{'app-config-dbhost'|trans}}</label>
-                    <div class="control has-icons-left has-icons-right">
-                        <input class="input" name="dbhost" type="text" placeholder="{{'app-config-dbhost'|trans}}" value="localhost" required="required">
-                        <span class="icon is-small is-left">
-                            <i class="fa fa-home"></i>
-                        </span>
-                    </div>
-                </div>                
-                <div class="field">
-                    <label class="label">{{'app-config-dbtype'|trans}}</label>
-                    <div class="control select">
-                        <select name="dbtype" required="required">
-                            <option value="">{{'app-config-dbtype'|trans}}</option>
-                            <option value="pgsql">PostgreSQL</option>
-                            <option value="mysql">MySQL</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="field">
+                <div class="field has-text-centered">
                     <p class="subtitle has-text-dark">{{'app-config-default-user'|trans|raw}}</p>
                 </div>
-                <div class="field is-grouped">
-                    <div class="control">
+                <div class="field is-grouped is-grouped-centered">
+                    <p class="control">
                         <button name="action" value="save" type="submit" class="button is-link">{{'app-config-btn-submit'|trans}}</button>
-                    </div>
-                    <div class="control">
+                    </p>
+                    <p class="control">
                         <button type="reset" class="button is-text">{{'app-config-btn-cancel'|trans}}</button>
-                    </div>
+                    </p>
                 </div>
             </form>
+            <div class="is-left">
+                {{database_url}}<br/>
+                {% for line in filecontents %}
+                    {{line}}<br/>
+                {% endfor %}
+            </div>
         </div>
+
     </div>
     <script>
-        document.login_form.dbuser.focus();
+        document.config_form.dbuser.focus();
+        var dbtypeSelect = document.config_form.dbtype;
+        dbtypeSelect.addEventListener('change', function (el) {
+            var port = 3306;
+            if (el.target.value === 'pgsql') {
+                port = 5432;
+            } else if (el.target.value === '') {
+                port = '';
+            }
+            document.config_form.dbport.value = port;
+        });
+
     </script>
 {% endblock %}

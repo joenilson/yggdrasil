@@ -44,19 +44,19 @@ class TelemetrySubscriber implements EventSubscriberInterface
 
     public function initDatabase()
     {
-        /*
+
         $this->databaseConfig = [
-            'dbport'=> $this->container->getParameter('database_port'),
-            'dbhost'=> $this->container->getParameter('database_host'),
-            'dbname'=> $this->container->getParameter('database_name'),
-            'dbuser'=> $this->container->getParameter('database_user'),
-            'dbpass'=> $this->container->getParameter('database_password'),
-            'dbtype'=> $this->container->getParameter('database_driver')
+            'dbport'=> $_SERVER['database_port'],
+            'dbhost'=> $_SERVER['database_host'],
+            'dbname'=> $_SERVER['database_name'],
+            'dbuser'=> $_SERVER['database_user'],
+            'dbpass'=> $_SERVER['database_password'],
+            'dbtype'=> $_SERVER['database_driver']
         ];
         $conn = new BaseConfig();
-        return $conn->verifyDatabase($this->databaseConfig);
-        */
-        return 'app-db-created-success';
+        return $conn->verifyDatabase($_SERVER['DATABASE_URL']);
+        //$conn->verifyDatabase($_SERVER['DATABASE_URL']);
+        //return 'app-db-created-success';
     }
 
     public function verifyDatabase()
@@ -72,7 +72,7 @@ class TelemetrySubscriber implements EventSubscriberInterface
         $userUtils = new UserUtils();
         $verifyDatabase = $this->initDatabase();
         if($verifyDatabase !== 'app-db-non-exists'){
-            $users = $this->em->getRepository('App:User');
+            $users = $this->em->getRepository('App:Login');
             $user = $users->findByUsername('admin')[0];
             if($user){
                 $encoder = $this->encoder->getEncoder($user);
@@ -99,7 +99,7 @@ class TelemetrySubscriber implements EventSubscriberInterface
                 }
             }
         }else{
-            if($request->get('_route') !== 'config_system'){
+            if($request->get('_route') !== 'config_system' && $request->get('_route') !== null && $request->get('_route') !== '_wdt'){
                 return $event->setResponse(
                     new RedirectResponse(
                         $this->routerInterface->generate('config_system')

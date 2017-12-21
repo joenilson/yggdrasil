@@ -8,14 +8,17 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 class LocaleSubscriber implements EventSubscriberInterface
 {
     private $defaultLocale;
+    private $em;
     private $session;
-    public function __construct($defaultLocale = 'en', SessionInterface $session)
+    public function __construct($defaultLocale = 'en', EntityManagerInterface $em, SessionInterface $session)
     {
         $this->defaultLocale = $defaultLocale;
+        $this->em = $em;
         $this->session = $session;
     }
 
@@ -29,7 +32,7 @@ class LocaleSubscriber implements EventSubscriberInterface
     {
         $request = $event->getRequest();
         if (!$request->hasPreviousSession()) {
-            return;
+            //return;
         }
         // try to see if the locale has been set as a _locale or lang routing or query parameter
         if ($locale = $request->query->get('lang')) {
@@ -46,7 +49,9 @@ class LocaleSubscriber implements EventSubscriberInterface
      */
     public function onInteractiveLogin(InteractiveLoginEvent $event)
     {
-        $user = $event->getAuthenticationToken()->getUser();
+        $login = $event->getAuthenticationToken()->getUser();
+        $user_repo = $this->em->getRepository('App:User');
+        $user = $user_repo->findByUsername($login->getUsername())[0];
         if (null !== $user->getLocale()) {
             $this->session->set('_locale', $user->getLocale());
         }

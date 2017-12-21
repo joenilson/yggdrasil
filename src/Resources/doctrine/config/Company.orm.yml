@@ -1,0 +1,26 @@
+Company:
+    type: entity
+    table: companies
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+        shortname:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }
