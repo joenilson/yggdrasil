@@ -7,9 +7,8 @@
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('/vendors/font-awesome/css/font-awesome.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/build/css/app.css') }}" /> {% block stylesheets %}{% endblock %}
-    <!-- <script src="{{ asset('vendors/jquery/jquery.min.js') }}"></script> !-->
-    <script src="{{ asset('/build/js/app.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('/css/app.min.css') }}" /> {% block stylesheets %}{% endblock %}
+    <script src="{{ asset('/js/app.min.js') }}"></script>
     {% block javascript_header %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
@@ -59,7 +58,7 @@
                         <span class="icon">
                           <i class="fa fa-user"></i>
                         </span>
-                        <span>{{user_info.firstname}} {{user_info.lastname}}</span>
+                        <span>{{app.session.get('user_fullname')}}</span>
                     </a>
                     <span class="navbar-item">
                         <a href="{{path('logout')}}" class="button is-inverted" id="btn_dologin">

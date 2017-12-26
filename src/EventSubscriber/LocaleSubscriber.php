@@ -8,10 +8,12 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 
 class LocaleSubscriber implements EventSubscriberInterface
 {
+    private $container;
     private $defaultLocale;
     private $em;
     private $session;
@@ -52,6 +54,8 @@ class LocaleSubscriber implements EventSubscriberInterface
         $login = $event->getAuthenticationToken()->getUser();
         $user_repo = $this->em->getRepository('App:User');
         $user = $user_repo->findByUsername($login->getUsername())[0];
+        $this->session->set('user_fullname', $user->getFirstname().' '.$user->getLastname());
+        $this->session->set('user_email', $user->getEmail());
         if (null !== $user->getLocale()) {
             $this->session->set('_locale', $user->getLocale());
         }

@@ -12,4 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    function getFullname2()
+    {
+        return;
+    }
 }

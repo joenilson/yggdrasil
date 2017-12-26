@@ -48,21 +48,17 @@ class BaseController extends Controller
         $this->request = $requestStack->getCurrentRequest();
         $this->session = $session;
         $this->container = $container;
+
+//        $login = $this->getUser();
+//
+//        $user_repo = $this->em->getRepository('App:User');
+//        $user = $user_repo->findByUsername($login->getUsername())[0];
+//        $this->container->setParameter('user_info2', $user);
     }
 
     public function initDatabase()
     {
-
-        $this->databaseConfig = [
-            'dbport'=> $_SERVER['database_port'],
-            'dbhost'=> $_SERVER['database_host'],
-            'dbname'=> $_SERVER['database_name'],
-            'dbuser'=> $_SERVER['database_user'],
-            'dbpass'=> $_SERVER['database_password'],
-            'dbtype'=> $_SERVER['database_driver']
-        ];
         $conn = new BaseConfig();
-        //return $conn->verifyDatabase($this->databaseConfig);
         return $conn->verifyDatabase($_SERVER['DATABASE_URL']);
     }
 

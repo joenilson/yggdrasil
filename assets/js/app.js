@@ -6,10 +6,7 @@ var $ = require('jquery');
 
 var Bulma = require('bulmajs');
 
-var flatpickr = requre('flatpickr');
-
-// import the function from greet.js (the .js extension is optional)
-// ./ (or ../) means to look for a local file
+var flatpickr = require('flatpickr');
 
 $(document).ready(function() {
     $('#edit-preferences').click(function() {

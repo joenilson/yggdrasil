@@ -34,7 +34,6 @@ class DefaultController extends BaseController
             }
             $dataResponse['form'] = $form->createView();
         }
-        $dataResponse['user_info'] = $user_info;
         $verifyDatabase = $this->initDatabase();
         if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY') AND $verifyDatabase != 'app-db-non-exists') {
             throw $this->createAccessDeniedException();
