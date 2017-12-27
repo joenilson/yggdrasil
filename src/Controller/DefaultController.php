@@ -14,21 +14,16 @@ class DefaultController extends BaseController
     public function index(Request $request)
     {
         $dataResponse = [];
-
         $userUtils = new UserUtils();
         $user = $this->getUser();
-        $user_repo = $this->em->getRepository('App:User');
-        $user_info = $user_repo->findByUsername($user->getUsername())[0];
         if($user){
             $changePassword = new \StdClass();
             $changePassword->username = $user->getUsername();
-            //$changePassword->email = $user->getEmail();
             $changePassword->oldpassword = null;
             $changePassword->password = null;
             $form = $this->createForm(ChangePassword::class, $changePassword);
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
-                //$this->passencoder->getEncoder()
                 $encoder = $this->encoder->getEncoder($user);
                 $userUtils->verifyChangePassword($form, $encoder, $user, $this->em, $request);
             }

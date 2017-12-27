@@ -47,3 +47,10 @@ user_info:
     methods: [GET, POST]
     requirements:
         _locale: '%app.locales%'
+
+change_password:
+    path: /work/change_password
+    defaults: { _controller: App\Controller\UserController::changePassword, _locale: es }
+    methods: [GET, POST]
+    requirements:
+        _locale: '%app.locales%'

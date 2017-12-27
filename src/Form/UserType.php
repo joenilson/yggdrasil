@@ -43,17 +43,21 @@ class UserType extends AbstractType
         ->add('email', EmailType::class, ['label' => 'app-user-email' ])
         ->add('status', ChoiceType::class, ['label' => 'app-user-is-active', 'required' => false ,
             'choices' => [
-                'A' => 'app-user-status-active',
-                'I' => 'app-user-status-inactive',
-                'L' => 'app-user-status-locked',
-                'D' => 'app-user-status-deleted'
+                'app-user-status-active' => 'A',
+                'app-user-status-inactive' => 'I',
+                'app-user-status-locked' => 'L',
+                'app-user-status-deleted' => 'D'
             ]
         ])
         //->add('lastIp', TextType::class, ['label' => 'app-user-last-ip', 'attr'=>['readonly'=>true] ])
         //->add('lastTime', DateTimeType::class, ['label' => 'app-user-last-time', 'attr'=>['readonly'=>true] ])
-        ->add('dateCreation', DateTimeType::class, ['label' => 'app-user-date-created', 'attr'=>['readonly'=>true] ])
+        ->add('dateCreation', DateTimeType::class, ['label' => 'app-user-date-created', 'attr'=>['readonly'=>true, 'class'=>'yggrasil-datetime'],
+                'widget' => 'single_text', 'format' => 'dd-MM-yyyy HH:mm:ss'
+            ])
         ->add('userCreation', TextType::class, ['label' => 'app-user-user-created', 'attr'=>['readonly'=>true]])
-        ->add('dateModified', DateTimeType::class, ['label' => 'app-user-date-modified', 'attr'=>['readonly'=>true] ])
+        ->add('dateModified', DateTimeType::class, ['label' => 'app-user-date-modified', 'attr'=>['readonly'=>true],
+             'widget' => 'single_text', 'format' => 'dd-MM-yyyy HH:mm:ss'
+            ])
         ->add('userModify', TextType::class, ['label' => 'app-user-user-modified', 'attr'=>['readonly'=>true] ])
         ->add($builder->create('_', FormType::class, array('inherit_data' => true))
         ->add('save', SubmitType::class, ['label' => 'app-user-btn-save'])
