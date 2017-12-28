@@ -150,6 +150,7 @@ class User
 
     public function getImage()
     {
+        $this->image = (empty($this->image)) ? 'user.png' : $this->image;
         return $this->image;
     }
 

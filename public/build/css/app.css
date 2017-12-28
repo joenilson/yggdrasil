@@ -12129,6 +12129,10 @@ span.flatpickr-weekday {
     margin-bottom: 0;
     padding: .375rem 1rem; }
 
+.user-image {
+  margin-top: -10px;
+  padding-bottom: 10px; }
+
 .user-image img {
   background: #fff;
   border-radius: 50%;

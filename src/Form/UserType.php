@@ -29,7 +29,7 @@ class UserType extends AbstractType
             'attr'=>['readonly'=>true] ])
         ->add('firstname', TextType::class, ['label' => 'app-user-firstname' ])
         ->add('lastname', TextType::class, ['label' => 'app-user-lastname' ])
-        ->add('image', FileType::class, ['label' => 'app-user-image'])
+        ->add('image', FileType::class, ['label' => 'app-user-image', 'data_class'=>null])
         ->add('locale', LocaleType::class, ['label' => 'app-user-locale'])
         /*
         ->add('role', ChoiceType::class, ['label'=> 'app-user-role', 'attr'=>['readonly'=>true],

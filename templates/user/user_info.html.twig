@@ -5,6 +5,12 @@
         <div class="columns is-mobile">
             <div class="column is-10-desktop is-10-mobile is-10-tablet is-offset-1-fullhd is-offset-1-tablet">
                 <div class="box">
+                    <h1 class="title has-text-dark">{{'app-user-preferences'|trans}}</h1>
+                    <figure class="user-image">
+                        <img src="/work/avatars/{{app.session.get('user_avatar')}}" width='auto' align="center">
+                    </figure>
+                    <br/>
+                    <div class="is-clearfix"></div>
                     {{form_start(form)}}
                     {{form_end(form)}}
                 </div>

@@ -56,6 +56,7 @@ class LocaleSubscriber implements EventSubscriberInterface
         $user = $user_repo->findByUsername($login->getUsername())[0];
         $this->session->set('user_fullname', $user->getFirstname().' '.$user->getLastname());
         $this->session->set('user_email', $user->getEmail());
+        $this->session->set('user_avatar', $user->getImage());
         if (null !== $user->getLocale()) {
             $this->session->set('_locale', $user->getLocale());
         }
