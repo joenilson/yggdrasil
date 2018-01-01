@@ -16,3 +16,4 @@
 ###< symfony/phpunit-bridge ###
 /nbproject/private/
 /nbproject/
+.DS_STORE
