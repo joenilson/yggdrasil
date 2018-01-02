@@ -1,6 +1,7 @@
 <?php
-namespace App\Functions;
+namespace App\Tests\Functions;
 
+use App\Functions\UserUtils;
 use PHPUnit\Framework\TestCase;
 
 /**

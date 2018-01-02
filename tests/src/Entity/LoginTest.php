@@ -1,6 +1,7 @@
 <?php
-namespace App\Entity;
+namespace App\Tests\Entity;
 
+use App\Entity\Login;
 use PHPUnit\Framework\TestCase;
 
 /**

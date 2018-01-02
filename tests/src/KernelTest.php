@@ -1,6 +1,7 @@
 <?php
-namespace App;
+namespace App\Tests;
 
+use App\Kernel;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,7 +21,7 @@ class KernelTest extends TestCase
      */
     protected function setUp()
     {
-        $this->object = new Kernel;
+        $this->object = new Kernel('test',true);
     }
 
     /**

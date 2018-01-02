@@ -1,6 +1,7 @@
 <?php
-namespace App\Functions\DB;
+namespace App\Tests\Functions\DB;
 
+use App\Functions\DB\SystemTables;
 use PHPUnit\Framework\TestCase;
 
 /**

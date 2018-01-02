@@ -1,6 +1,7 @@
 <?php
-namespace App\Form;
+namespace App\Tests\Form;
 
+use App\Form\ChangePassword;
 use PHPUnit\Framework\TestCase;
 
 /**
