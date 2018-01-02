@@ -1,32 +1,20 @@
 {% extends 'base.html.twig' %}
-
+{% form_theme form 'Form/bulma_horizontal_layout.html.twig' %}
 {% block content %}
-
-<div class="column is-2"></div>
-<div class="column">
-<div class="box">
-<div class="title has-text-dark">
-{{'app-user-preferences'|trans}}
-<div class=flatpickr>
-    <input type="text" class="input" id="datepicker_userpreferences" placeholder="Select Date.." data-input="" readonly> <!-- input is mandatory -->
-
-    <a class="input-button" title="toggle" data-toggle>
-        <i class="icon-calendar"></i>
-    </a>
-
-    <a class="input-button" title="clear" data-clear>
-        <i class="icon-close"></i>
-    </a>
-</div>
-<figure class="image is-128x128 user-image is-pulled-right">
-  <img src="https://placehold.it/128x128">
-</figure>
-</div>
-<div class="is-clearfix"></div>
-<div class="is-divider" data-content="User Info"></div>
-{{form_start(form)}}
-{{form_end(form)}}
-</div>
-</div>
-<div class="column is-2"></div>
+    <div class="container has-text-centered">
+        <div class="columns is-mobile">
+            <div class="column is-10-desktop is-10-mobile is-10-tablet is-offset-1-fullhd is-offset-1-tablet">
+                <div class="box">
+                    <h1 class="title has-text-dark">{{'app-user-preferences'|trans}}</h1>
+                    <figure class="user-image">
+                        <img src="/work/avatars/{{app.session.get('user_avatar')}}" width='auto' align="center">
+                    </figure>
+                    <br/>
+                    <div class="is-clearfix"></div>
+                    {{form_start(form)}}
+                    {{form_end(form)}}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

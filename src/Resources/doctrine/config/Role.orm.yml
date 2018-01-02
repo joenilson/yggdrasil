@@ -1,0 +1,33 @@
+Role:
+    type: entity
+    table: roles
+    id:
+        roleName:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            id: true
+            column: role_name
+            generator:
+                strategy: SEQUENCE
+    fields:
+        roleText:
+            type: string
+            nullable: false
+            length: 80
+            options:
+                fixed: false
+            column: role_text
+        roleDefault:
+            type: boolean
+            nullable: false
+            column: role_default
+        status:
+            type: string
+            nullable: false
+            length: 1
+            options:
+                fixed: true
+    lifecycleCallbacks: {  }

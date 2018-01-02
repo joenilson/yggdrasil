@@ -1,0 +1,35 @@
+UserCompany:
+    type: entity
+    table: user_companies
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        companyId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: company_id
+        userId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: user_id
+        datecreation:
+            type: datetime
+            nullable: false
+        usercreation:
+            type: string
+            nullable: true
+            length: 25
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

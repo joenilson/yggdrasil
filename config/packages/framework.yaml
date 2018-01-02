@@ -1,6 +1,7 @@
 parameters:
-    locale: en
+    app.locale: en
     app.locales: es|en
+    app.user_info: ''
 framework:
     secret: '%env(APP_SECRET)%'
     default_locale: en
@@ -10,7 +11,9 @@ framework:
     # uncomment this entire section to enable sessions
     session:
         # With this config, PHP's native session handling is used
-        handler_id: ~
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+
 
     #esi: ~
     #fragments: ~

@@ -1,0 +1,32 @@
+Login:
+    type: entity
+    table: login
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: SEQUENCE
+    fields:
+        username:
+            type: string
+            nullable: false
+            length: 25
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+        passwordsalt:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

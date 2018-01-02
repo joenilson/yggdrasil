@@ -1,15 +1,144 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-        {% endblock %}
-        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        <script src="{{ asset('build/js/app.js') }}"></script>
-        {% block javascripts %}{% endblock %}
-    </body>
+        <meta charset="UTF-8" />
+        <title>
+            {% block title %}Welcome!{% endblock %}
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ asset('/vendors/font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/css/app.min.css') }}" /> {% block stylesheets %}{% endblock %}
+        <script src="{{ asset('/js/app.min.js') }}"></script>
+    {% block javascript_header %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+
+<body>
+    <section id="menu">
+        <nav class="navbar is-dark is-fixed-top" data-bulma="navbar" role="navigation" aria-label="dropdown navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="{{path('home')}}">
+                        ASGARD
+                    </a>
+                    {% set array_locales = locales | split('|') %}
+                    <div class="navbar-item">
+                        <div class="buttons has-addons">
+                            {% for lang in array_locales %}
+                                <a class="button is-small is-warning {% if app.request.locale == lang %}is-active{% else %}is-outlined{% endif %}" href="{{path(app.request.attributes.get('_route'))}}?lang={{lang}}">
+                                    {{lang}}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="navbar-burger burger" data-trigger data-target="navbarMenuHero">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                {% block menu %}
+                    <div id="navbarMenuHero" class="navbar-menu">
+                        <div class="navbar-end">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <div class="navbar-item has-dropdown is-hoverable">
+                                    <span class="navbar-link">
+                                        {{'app-menu-admin-text'|trans}}
+                                    </span>
+                                    <div class="navbar-dropdown is-boxed">
+                                        <a class="navbar-item" href="#">
+                                            {{'app-menu-options-text'|trans}}
+                                        </a>
+                                        <a class="navbar-item" href="#">
+                                            Modifiers
+                                        </a>
+                                        <a class="navbar-item" href="#">
+                                            Columns
+                                        </a>
+                                        <a class="navbar-item" href="#">
+                                            Layout
+                                        </a>
+                                        <a class="navbar-item" href="#">
+                                            Form
+                                        </a>
+                                        <hr class="navbar-divider">
+                                        <a class="navbar-item" href="#">
+                                            Elements
+                                        </a>
+                                        <a class="navbar-item" href="#">
+                                            {{'app-menu-docs-text'|trans}}
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                {% include 'menu-accounting.html.twig' %}
+                                {% include 'menu-logistics.html.twig' %}
+                                {% include 'menu-purchase.html.twig' %}
+                                {% include 'menu-sales.html.twig' %}
+                                <div class="navbar-item has-dropdown is-hoverable">
+                                    <span class="navbar-link">
+                                        <span class="icon">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        <span>{{app.session.get('user_fullname')}}</span>
+                                    </span>
+                                    <div class="navbar-dropdown is-boxed">
+                                        <a class="navbar-item" href="{{path('user_info')}}">
+                                            {{'app-menu-user-info-text'|trans}}
+                                        </a>
+                                        <a class="navbar-item" href="{{path('change_password')}}">
+                                            {{'app-menu-user-change-password-text'|trans}}
+                                        </a>
+                                        <hr class="navbar-divider">
+                                        <a class="navbar-item" href="{{path('logout')}}">
+                                            <span class="icon">
+                                                <i class="fa fa-sign-out"></i>
+                                            </span>
+                                            <span>{{'app-close-session'|trans}}</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endblock %}
+                </div>
+        </nav>
+    </section>
+    {% block body %}
+        <section class="hero is-primary is-bold is-fullheight">
+            <div class="hero-head is-dark">
+                {% block head %}
+
+                {% endblock %}
+            </div>
+            <div class="hero-body">
+            {% block content %}{% endblock %}
+        </div>
+        {% block footer %}
+            <div class="hero-foot">
+                {% for label, messages in app.flashes %} {% for message in messages %}
+                        <div class="notification has-text-centered is-{{label}}">
+                            <button class="delete notification-close"></button> {{message|trans|raw}}
+                        </div>
+                    {% endfor %} {% endfor %} {% block footer_links %}
+                        <nav class="tabs is-boxed is-fullwidth">
+                            <div class="container"></div>
+                        </nav>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </section>
+    {% endblock %}
+{% block modals %}{% endblock %}
+{% block javascripts %}
+    <script>
+        flatpickr.localize(flatpickr.l10ns.{{app.request.locale}});
+        flatpickr(".yggrasil-datetime", { dateFormat: "d-m-Y H:i:S", enableTime: true, time_24hr: true });
+        flatpickr(".yggrasil-calendar", {dateFormat: "d-m-Y" });
+    </script>
+{% endblock %}
+</body>
+
 </html>

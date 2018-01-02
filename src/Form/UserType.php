@@ -25,19 +25,13 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('username', TextType::class, ['label' => 'app-user-username', 
+        $builder->add('username', TextType::class, ['label' => 'app-user-username',
             'attr'=>['readonly'=>true] ])
-        ->add('fullname', TextType::class, ['label' => 'app-user-fullname' ])
-        ->add('image', FileType::class, ['label' => 'app-user-image'])
+        ->add('firstname', TextType::class, ['label' => 'app-user-firstname' ])
+        ->add('lastname', TextType::class, ['label' => 'app-user-lastname' ])
+        ->add('image', FileType::class, ['label' => 'app-user-image', 'data_class'=>null])
         ->add('locale', LocaleType::class, ['label' => 'app-user-locale'])
-        ->add('oldpassword', PasswordType::class, array(
-            'label' => 'app-login-oldpassword'
-        ))
-        ->add('password', RepeatedType::class, [
-            'type' => PasswordType::class,
-            'first_options' => ['label' => 'app-login-password'],
-            'second_options' => ['label' => 'app-login-password-confirm'],
-        ])
+        /*
         ->add('role', ChoiceType::class, ['label'=> 'app-user-role', 'attr'=>['readonly'=>true],
         'choices'  => array(
             'ROLE_USER' => 'ROLE_USER',
@@ -45,20 +39,32 @@ class UserType extends AbstractType
             'ROLE_ADMIN' => 'ROLE_ADMIN',
             'ROLE_SUPER_ADMIN' => 'ROLE_SUPER_ADMIN',
         ),])
+            */
         ->add('email', EmailType::class, ['label' => 'app-user-email' ])
-        ->add('isActive', CheckboxType::class, ['label' => 'app-user-is-active', 'required' => false ])
-        ->add('lastIp', TextType::class, ['label' => 'app-user-last-ip', 'attr'=>['readonly'=>true] ])
-        ->add('lastTime', DateTimeType::class, ['label' => 'app-user-last-time', 'attr'=>['readonly'=>true] ])
-        ->add('dateCreation', DateTimeType::class, ['label' => 'app-user-date-created', 'attr'=>['readonly'=>true] ])
+        ->add('status', ChoiceType::class, ['label' => 'app-user-is-active', 'required' => false ,
+            'choices' => [
+                'app-user-status-active' => 'A',
+                'app-user-status-inactive' => 'I',
+                'app-user-status-locked' => 'L',
+                'app-user-status-deleted' => 'D'
+            ]
+        ])
+        //->add('lastIp', TextType::class, ['label' => 'app-user-last-ip', 'attr'=>['readonly'=>true] ])
+        //->add('lastTime', DateTimeType::class, ['label' => 'app-user-last-time', 'attr'=>['readonly'=>true] ])
+        ->add('dateCreation', DateTimeType::class, ['label' => 'app-user-date-created', 'attr'=>['readonly'=>true, 'class'=>'yggrasil-datetime'],
+                'widget' => 'single_text', 'format' => 'dd-MM-yyyy HH:mm:ss'
+            ])
         ->add('userCreation', TextType::class, ['label' => 'app-user-user-created', 'attr'=>['readonly'=>true]])
-        ->add('dateModify', DateTimeType::class, ['label' => 'app-user-date-modified', 'attr'=>['readonly'=>true] ])
+        ->add('dateModified', DateTimeType::class, ['label' => 'app-user-date-modified', 'attr'=>['readonly'=>true],
+             'widget' => 'single_text', 'format' => 'dd-MM-yyyy HH:mm:ss'
+            ])
         ->add('userModify', TextType::class, ['label' => 'app-user-user-modified', 'attr'=>['readonly'=>true] ])
         ->add($builder->create('_', FormType::class, array('inherit_data' => true))
         ->add('save', SubmitType::class, ['label' => 'app-user-btn-save'])
         ->add('cancel', ResetType::class, ['label' => 'app-user-btn-cancel' ])
         );
     }
-    
+
     /**
      * {@inheritdoc}
      */
