@@ -32,4 +32,11 @@ class UserCompanyTest extends TestCase
     {
         
     }
+    
+    public function testGetUserCompany()
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );    
+    }
 }

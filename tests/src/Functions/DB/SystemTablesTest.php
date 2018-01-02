@@ -21,7 +21,7 @@ class SystemTablesTest extends TestCase
      */
     protected function setUp()
     {
-        $this->object = new SystemTables;
+        $this->object = new SystemTables('');
     }
 
     /**
@@ -31,5 +31,12 @@ class SystemTablesTest extends TestCase
     protected function tearDown()
     {
         
+    }
+    
+    public function testGetSystemTables()
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );    
     }
 }

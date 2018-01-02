@@ -32,4 +32,11 @@ class RoleTest extends TestCase
     {
         
     }
+    
+    public function testGetRole()
+    {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );    
+    }
 }
