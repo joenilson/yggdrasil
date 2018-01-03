@@ -56,10 +56,10 @@
                         <div class="field">
 
 
-                        <label class="label has-text-left">{{'app-config-dbtype'|trans}} - {{'app-config-dbport'|trans}}</label>
-                        <div class="field has-addons">
+                            <label class="label has-text-left">{{'app-config-dbtype'|trans}} - {{'app-config-dbport'|trans}}</label>
+                            <div class="field has-addons">
 
-                            <p class="control is-expanded">
+                                <p class="control is-expanded">
                                 <div class="select is-fullwidth">
                                     <select name="dbtype" required="required">
                                         <option value="">{{'app-config-dbtype'|trans}}</option>
@@ -67,14 +67,14 @@
                                         <option value="mysql">MySQL</option>
                                     </select>
                                 </div>
-                            </p>
-                            <p class="control has-icons-left has-icons-right">
-                                <input class="input" name="dbport" width="90px" type="number" placeholder="{{'app-config-dbport'|trans}}" value="" required="required"/>
-                                <span class="icon is-small is-left">
-                                    <span class="fa fa-chain"></span>
-                                </span>
-                            </p>
-                        </div>
+                                </p>
+                                <p class="control has-icons-left has-icons-right">
+                                    <input class="input" name="dbport" width="90px" type="number" placeholder="{{'app-config-dbport'|trans}}" value="" required="required"/>
+                                    <span class="icon is-small is-left">
+                                        <span class="fa fa-chain"></span>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,14 +100,7 @@
                     </p>
                 </div>
             </form>
-            <div class="is-left">
-                {{database_url}}<br/>
-                {% for line in filecontents %}
-                    {{line}}<br/>
-                {% endfor %}
-            </div>
         </div>
-
     </div>
     <script>
         document.config_form.dbuser.focus();
@@ -123,4 +116,7 @@
         });
 
     </script>
+{% endblock %}
+{% block modals %}{% endblock %}
+{% block footer %}
 {% endblock %}

@@ -55,8 +55,6 @@ class TelemetrySubscriber implements EventSubscriberInterface
         ];
         $conn = new BaseConfig();
         return $conn->verifyDatabase($_SERVER['DATABASE_URL']);
-        //$conn->verifyDatabase($_SERVER['DATABASE_URL']);
-        //return 'app-db-created-success';
     }
 
     public function verifyDatabase()

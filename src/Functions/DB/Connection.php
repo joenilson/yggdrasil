@@ -2,7 +2,9 @@
 namespace App\Functions\DB;
 
 use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\DriverManager;
+use PDO;
 
 class Connection
 {
@@ -24,11 +26,14 @@ class Connection
     public function connect($dbconfig) {
         $config = new Configuration();
         $connectionParams = ['url'=>$dbconfig];
-        $conn = DriverManager::getConnection($connectionParams, $config);
-        //$pdo = new \PDO(\str_replace('pdo_','',$config['dbtype']).':host='.$config['dbhost'].';dbname='.$config['dbname'].';', $config['dbuser'], $config['dbpass']);
-        //$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $conn->connect();
-        return $conn->isConnected();
+        try {
+            $conn = DriverManager::getConnection($connectionParams, $config);
+            $conn->connect();
+            $status = $conn->isConnected();
+        } catch(DBALException $e) {
+            $status = false;
+        }        
+        return $status;
 
     }
 
@@ -40,8 +45,8 @@ class Connection
     }
 
     public function simpleConnect($config) {
-        $pdo = new \PDO(\str_replace('pdo_','',$config['dbtype']).':host='.$config['dbhost'].';', $config['dbuser'], $config['dbpass']);
-        $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $pdo = new PDO(\str_replace('pdo_','',$config['database_driver']).':host='.$config['database_host'].';', $config['database_user'], $config['database_password']);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
 

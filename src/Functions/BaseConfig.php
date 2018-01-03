@@ -41,7 +41,7 @@ class BaseConfig
     {
         try {
             $conn = Connection::get()->simpleConnect($config);
-            $conn->exec("CREATE DATABASE ".$config['dbname'].";");
+            $conn->exec("CREATE DATABASE ".$config['database_name'].";");
             return 'app-db-created-success';
         } catch (\PDOException $e) {
             return $e->getMessage();
