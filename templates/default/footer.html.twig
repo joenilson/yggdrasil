@@ -1,0 +1,14 @@
+<div class="hero-foot">
+    {% for label, messages in app.flashes %} 
+        {% for message in messages %}
+            <div class="notification has-text-centered is-{{label}}">
+                <button class="delete notification-close"></button> {{message|trans|raw}}
+            </div>
+        {% endfor %} 
+    {% endfor %} 
+    {% block footer_links %}
+        <nav class="tabs is-boxed is-fullwidth">
+            <div class="container"></div>
+        </nav>
+    {% endblock %}
+</div>

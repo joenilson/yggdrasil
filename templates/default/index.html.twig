@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="manifest" href="{{ asset('build/manifest.json') }}">
+    <link rel="stylesheet" href="{{ asset('build/css/app.css') }}" /> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock%}
 {% if form is defined %}
-{% form_theme form 'Form/bulma_horizontal_layout.html.twig' %}
+    {% form_theme form 'Form/bulma_horizontal_layout.html.twig' %}
 {% endif %}
 {% block content %}
     {% if verify_database != 'app-db-created-success' %}
@@ -23,26 +28,41 @@
                     {{'app-main-subtitle-welcome'|trans}}
                 </h2>
             </div>
+            {% verbatim %}
+            <div id="vueApp">
+                <b-field>
+                    <b-input maxlength="25" placeholder="Digite un codigo"></b-input>
+                </b-field>
+                
+            </div>
+            {% endverbatim %}
         {% else %}
             {% if form is defined %}
-            <div class="container">
-                <div class="column is-6 is-offset-3">
-                    <h1 class="title">
-                        {{'app-config-incomplete-title'|trans}}
-                    </h1>
-                    <h2 class="subtitle">
-                        {{'app-config-incomplete-subtitle'|trans}}
-                        <a href="{{path('options')}}" class="button is-medium">{{'app-menu-options-text'|trans}}</a>
-                    </h2>
-                    <div class="box">
-                        {{form_start(form)}}
-                        {{form_end(form)}}
+                <div class="container">
+                    <div class="column is-6 is-offset-3">
+                        <h1 class="title">
+                            {{'app-config-incomplete-title'|trans}}
+                        </h1>
+                        <h2 class="subtitle">
+                            {{'app-config-incomplete-subtitle'|trans}}
+                            <a href="{{path('options')}}" class="button is-medium">{{'app-menu-options-text'|trans}}</a>
+                        </h2>
+                        <div class="box">
+                            {{form_start(form)}}
+                            {{form_end(form)}}
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endif %}
         {% endif %}
     {% endif %}
 {% endblock %}
 
 {% block init_modal_db %}{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('build/js/app.js') }}"></script>
+<script>
+    
+</script>
+{% endblock %}

@@ -4,9 +4,10 @@
 @import "../../node_modules/bulma/sass/utilities/functions";
 // Aqui van todas la variables personalizadas que necesitemos
 @import "../../node_modules/bulma/bulma";
+$fa-font-path: "~font-awesome/fonts";
+@import "../../node_modules/font-awesome/scss/font-awesome.scss";
 @import "../../node_modules/buefy/src/scss/buefy.scss";
 @import "../../node_modules/bulma-extensions/extensions.sass";
-@import "../../node_modules/flatpickr/dist/flatpickr";
 
 .title-dark {
     color: #000000 !important;

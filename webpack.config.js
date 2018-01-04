@@ -13,7 +13,7 @@ Encore
         //.addEntry('app', './assets/js/app.js')
         .addEntry('js/app', './assets/js/vue.js')
 
-        .enableVueLoader()
+        //.createSharedEntry('vendor', ['jquery', 'font-awesome'])
 
         .addStyleEntry('css/app', './assets/css/app.scss')
         // allow sass/scss files to be processed
@@ -24,7 +24,7 @@ Encore
         // allow legacy applications to use $/jQuery as a global variable
         .autoProvidejQuery()
 
-        //.enableSourceMaps(!Encore.isProduction())
+        .enableSourceMaps(!Encore.isProduction())
 
         // empty the outputPath dir before each build
         .cleanupOutputBeforeBuild()
@@ -34,7 +34,7 @@ Encore
 
         // create hashed filenames (e.g. app.abc123.css)
         // .enableVersioning()
-        //.enableVueLoader()
+        .enableVueLoader()
         ;
 
 // export the final configuration

@@ -4,10 +4,6 @@ var fa = require('fontawesome');
 // loads the jquery package from node_modules
 var $ = require('jquery');
 
-var Bulma = require('bulmajs');
-
-var flatpickr = require('flatpickr');
-
 $(document).ready(function() {
     $('#edit-preferences').click(function() {
         $('#edit-preferences-modal').addClass('is-active');

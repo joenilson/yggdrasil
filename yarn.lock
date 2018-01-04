@@ -1117,7 +1117,7 @@ bulma@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.6.1.tgz#5f21a77c0c06f7d80051c06628c23516081bd649"
 
-bulmajs@0.0.2:
+bulmajs@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/bulmajs/-/bulmajs-0.0.2.tgz#120797647a5e27bac277961708b0beb831e14e39"
   dependencies:
@@ -2479,10 +2479,6 @@ flagged-respawn@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/flagged-respawn/-/flagged-respawn-1.0.0.tgz#4e79ae9b2eb38bf86b3bb56bf3e0a56aa5fcabd7"
 
-flatpickr@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.1.4.tgz#4b7244976a426976fd6bcca593efdda5cb7e910e"
-
 flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
@@ -2493,6 +2489,10 @@ flush-write-stream@^1.0.0, flush-write-stream@^1.0.2:
   dependencies:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
+
+font-awesome@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
 
 fontawesome@^4.7.2:
   version "4.7.2"
