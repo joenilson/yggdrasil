@@ -7,7 +7,7 @@
 ERP System created on this technologies:
 
 * Symfony 4
-* Angular 5
-* Ionic 3 and StencilJS for PWA
+* VueJS 2
+* Bulma CSS
 
 The license of the project is LGPL 3.0
