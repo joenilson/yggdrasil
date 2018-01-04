@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
-    <link rel="manifest" href="{{ asset('build/manifest.json') }}">
-    <link rel="stylesheet" href="{{ asset('build/css/app.css') }}" /> 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% endblock%}
 {% if form is defined %}
     {% form_theme form 'Form/bulma_horizontal_layout.html.twig' %}
@@ -61,7 +58,6 @@
 {% block init_modal_db %}{% endblock %}
 
 {% block javascripts %}
-<script src="{{ asset('build/js/app.js') }}"></script>
 <script>
     
 </script>

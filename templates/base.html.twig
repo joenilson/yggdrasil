@@ -7,6 +7,10 @@
         </title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <link rel="manifest" href="{{ asset('build/manifest.json') }}">
+        {% endif %}
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}" />     
         {% block stylesheets %}{% endblock %}
         {% block stylesheets_secondary %}{% endblock %}
     {% block javascript_header %}{% endblock %}
@@ -29,7 +33,9 @@
     </section>
 {% endblock %}
 {% block modals %}{% endblock %}
-
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <script src="{{ asset('build/js/app.js') }}"></script>
+{% endif %}
 {% block javascripts %}
     
 {% endblock %}
