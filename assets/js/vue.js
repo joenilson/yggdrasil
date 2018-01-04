@@ -20,7 +20,7 @@ import Vue from 'vue';
 import Buefy from 'buefy';
 import Cleave from 'cleave.js';
 /// application specific
-import Bulma from './../vendors/bulmajs/dist/bulma';
+import Bulma from './../vendors/bulmajs/src/bulma';
 import App from './App.vue';
 
 Vue.config.productionTip = false;
