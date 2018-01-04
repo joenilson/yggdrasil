@@ -14,8 +14,6 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-require('../css/app.scss');
-
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import router from './router/';
