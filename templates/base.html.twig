@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="has-navbar-fixed-top">
+<html>
     <head>
         <meta charset="UTF-8" />
         <title>
@@ -16,20 +16,18 @@
     {% block javascript_header %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
-<body>
+<body>   
 {% block body %}
-    {% block menu %}
-        {% include 'default/navbar.html.twig' %}
-    {% endblock %}
     <section class="hero is-primary is-bold is-fullheight">
-    <div class="hero-body">
-    {% block content %}
-        
-    {% endblock %}
-    </div>
-    {% block footer %}
-        {% include 'default/footer.html.twig' %}
-    {% endblock %}
+        <div class="hero-head">
+        {{ include('default/navbar.html.twig') }}
+        </div>
+        <div class="hero-body" id="vueApp">
+        {% block content %}
+
+        {% endblock %}
+        </div>
+        {{ include('default/footer.html.twig') }}
     </section>
 {% endblock %}
 {% block modals %}{% endblock %}
@@ -40,5 +38,4 @@
     
 {% endblock %}
 </body>
-
 </html>

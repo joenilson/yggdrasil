@@ -3,11 +3,21 @@
 @import "../../node_modules/bulma/sass/utilities/initial-variables";
 @import "../../node_modules/bulma/sass/utilities/functions";
 // Aqui van todas la variables personalizadas que necesitemos
+$dropdown-item-color: $grey-dark;
+$dropdown-item-hover-color: $black;
 @import "../../node_modules/bulma/bulma";
 $fa-font-path: "~font-awesome/fonts";
 @import "../../node_modules/font-awesome/scss/font-awesome.scss";
 @import "../../node_modules/buefy/src/scss/buefy.scss";
 @import "../../node_modules/bulma-extensions/extensions.sass";
+
+.hero.is-dark a:not(.button) {
+    color: #4a4a4a !important;
+}
+
+.hero.is-primary a:not(.button) {
+    color: #4a4a4a !important;
+}
 
 .title-dark {
     color: #000000 !important;

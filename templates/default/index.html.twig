@@ -25,40 +25,80 @@
                     {{'app-main-subtitle-welcome'|trans}}
                 </h2>
             </div>
-            {% verbatim %}
-            <div id="vueApp">
-                <b-field>
-                    <b-input maxlength="25" placeholder="Digite un codigo"></b-input>
-                </b-field>
-                
-            </div>
-            {% endverbatim %}
-        {% else %}
-            {% if form is defined %}
-                <div class="container">
-                    <div class="column is-6 is-offset-3">
-                        <h1 class="title">
-                            {{'app-config-incomplete-title'|trans}}
-                        </h1>
-                        <h2 class="subtitle">
-                            {{'app-config-incomplete-subtitle'|trans}}
-                            <a href="{{path('options')}}" class="button is-medium">{{'app-menu-options-text'|trans}}</a>
-                        </h2>
-                        <div class="box">
-                            {{form_start(form)}}
-                            {{form_end(form)}}
-                        </div>
+
+            <section>
+                <b-dropdown>
+                    <button class="button is-primary" slot="trigger">
+                        <span>Click me!</span>
+                        <b-icon icon="caret-down"></b-icon>
+                    </button>
+
+                    <b-dropdown-item>Action</b-dropdown-item>
+                    <b-dropdown-item>Another action</b-dropdown-item>
+                    <b-dropdown-item>Something else</b-dropdown-item>
+                </b-dropdown>
+
+                <b-dropdown hoverable>
+                    <button class="button is-info" slot="trigger">
+                        <span>Hover me!</span>
+                        <b-icon icon="caret-down"></b-icon>
+                    </button>
+
+                    <b-dropdown-item>Action</b-dropdown-item>
+                    <b-dropdown-item>Another action</b-dropdown-item>
+                    <b-dropdown-item>Something else</b-dropdown-item>
+                </b-dropdown>
+
+                <b-dropdown disabled>
+                    <button class="button" slot="trigger">
+                        <span>Disabled</span>
+                        <b-icon icon="caret-down"></b-icon>
+                    </button>
+
+                    <b-dropdown-item>Action</b-dropdown-item>
+                    <b-dropdown-item>Another action</b-dropdown-item>
+                    <b-dropdown-item>Something else</b-dropdown-item>
+                </b-dropdown>
+
+                <b-dropdown>
+                    <p class="tag is-success" slot="trigger">
+                        Custom trigger
+                    </p>
+
+                    <b-dropdown-item>Action</b-dropdown-item>
+                    <b-dropdown-item>Another action</b-dropdown-item>
+                    <b-dropdown-item>Something else</b-dropdown-item>
+                </b-dropdown>
+            </section>
+
+        </div>
+
+    {% else %}
+        {% if form is defined %}
+            <div class="container">
+                <div class="column is-6 is-offset-3">
+                    <h1 class="title">
+                        {{'app-config-incomplete-title'|trans}}
+                    </h1>
+                    <h2 class="subtitle">
+                        {{'app-config-incomplete-subtitle'|trans}}
+                        <a href="{{path('options')}}" class="button is-medium">{{'app-menu-options-text'|trans}}</a>
+                    </h2>
+                    <div class="box">
+                        {{form_start(form)}}
+                        {{form_end(form)}}
                     </div>
                 </div>
-            {% endif %}
+            </div>
         {% endif %}
     {% endif %}
+{% endif %}
 {% endblock %}
 
 {% block init_modal_db %}{% endblock %}
 
 {% block javascripts %}
-<script>
-    
-</script>
+    <script>
+
+    </script>
 {% endblock %}

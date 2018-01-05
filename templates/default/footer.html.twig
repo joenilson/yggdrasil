@@ -1,3 +1,4 @@
+{% block footer %}
 <div class="hero-foot">
     {% for label, messages in app.flashes %} 
         {% for message in messages %}
@@ -12,3 +13,4 @@
         </nav>
     {% endblock %}
 </div>
+{% endblock %}
