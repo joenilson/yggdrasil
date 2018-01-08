@@ -10,13 +10,13 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <link rel="manifest" href="{{ asset('build/manifest.json') }}">
         {% endif %}
-        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}" />     
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}" />
         {% block stylesheets %}{% endblock %}
         {% block stylesheets_secondary %}{% endblock %}
     {% block javascript_header %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
-<body>   
+<body>
 {% block body %}
     <section class="hero is-primary is-bold is-fullheight">
         <div class="hero-head">
@@ -35,7 +35,7 @@
     <script src="{{ asset('build/js/app.js') }}"></script>
 {% endif %}
 {% block javascripts %}
-    
+
 {% endblock %}
 </body>
 </html>

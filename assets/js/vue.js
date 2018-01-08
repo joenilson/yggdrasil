@@ -14,25 +14,26 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import Vue from 'vue';
-import Buefy from 'buefy';
-import Cleave from 'cleave.js';
-import Bulma from './../vendors/bulmajs/src/bulma';
-import App from './App.vue';
-import DashboardArticle from './components/DashboardArticle.vue';
-import DashboardMap from './components/DashboardMap.vue';
+import Vue from 'vue'
 
-Vue.config.productionTip = false;
+import Buefy from 'buefy'
+import Cleave from 'cleave.js'
+import * as Datamaps from './../vendors/datamaps/datamaps.dom'
+import Bulma from './../vendors/bulmajs/src/bulma'
+import DashboardArticle from './components/DashboardArticle.vue'
+import DashboardMap from './components/DashboardMap.vue'
+
+Vue.config.productionTip = false
 Vue.use(Buefy, {
-    defaultIconPack: 'fa'
-});
+  defaultIconPack: 'fa'
+})
 
 // bootstrap the vueApp
 let yggdrasil = new Vue({
-    delimiters: ['${', '}'],
-    el: '#vueApp',
-    components: {
-        DashboardArticle,
-        DashboardMap
-    }
-});
+  delimiters: ['${', '}'],
+  el: '#vueApp',
+  components: {
+    DashboardArticle,
+    DashboardMap
+  }
+})
