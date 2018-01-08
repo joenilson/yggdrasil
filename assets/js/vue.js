@@ -15,24 +15,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import Vue from 'vue';
-//import VueRouter from 'vue-router';
-//import router from './router/';
 import Buefy from 'buefy';
 import Cleave from 'cleave.js';
-/// application specific
 import Bulma from './../vendors/bulmajs/src/bulma';
 import App from './App.vue';
+import DashboardArticle from './components/DashboardArticle.vue';
 
 Vue.config.productionTip = false;
 Vue.use(Buefy, {
     defaultIconPack: 'fa'
 });
-//Vue.use(VueRouter);
 
 // bootstrap the vueApp
 let yggdrasil = new Vue({
-  el: '#vueApp'
-
-  //,template: '<App/>',
-  //components: { App }
+    delimiters: ['${', '}'],
+    el: '#vueApp',
+    components: {
+        DashboardArticle
+    }
 });

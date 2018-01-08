@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
 use App\Form\ChangePassword;
 use App\Controller\BaseController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\Translator;
 use App\Functions\UserUtils;
 
 class DefaultController extends BaseController
@@ -37,6 +35,11 @@ class DefaultController extends BaseController
         $dataResponse['base_dir'] = realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR;
         $dataResponse['verify_database'] = $verifyDatabase;
         $dataResponse['app_configured'] = $this->app_configured;
+
+        $dataResponse['dashboard_tiles'][] = ['title'=>'100000.25','subtitle'=>'Compras'];
+        $dataResponse['dashboard_tiles'][] = ['title'=>'1000000.05','subtitle'=>'Ventas'];
+        $dataResponse['dashboard_tiles'][] = ['title'=>'900000.78','subtitle'=>'Caja y Banco'];
+        $dataResponse['dashboard_tiles'][] = ['title'=>'100','subtitle'=>'Nuevos Clientes'];
 
         return $this->render('default/index.html.twig', $dataResponse );
     }
