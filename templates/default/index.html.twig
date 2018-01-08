@@ -22,7 +22,9 @@
                 <dashboard-article title="{{tile.title}}" subtitle="{{tile.subtitle}}">
                 </dashboard-article>
                 {% endfor %}
+                <dashboard-map></dashboard-map>
             </div>
+            
     {% else %}
         {% if form is defined %}
             <div class="container">

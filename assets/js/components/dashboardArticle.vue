@@ -1,5 +1,5 @@
 <template>
-    <div class="tile is-parent">
+    <div class="tile is-vertical">
         <article class="tile is-child box">
             <p class="title has-text-dark">{{parseFloat(title).toLocaleString()}}</p>
             <p class="subtitle has-text-grey-darker">{{subtitle}}</p>
@@ -10,7 +10,7 @@
     export default {
         name: 'dashboard-article',
         props: {
-            title: Number,
+            title: String,
             subtitle: String
         }
     }

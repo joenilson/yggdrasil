@@ -20,6 +20,7 @@ import Cleave from 'cleave.js';
 import Bulma from './../vendors/bulmajs/src/bulma';
 import App from './App.vue';
 import DashboardArticle from './components/DashboardArticle.vue';
+import DashboardMap from './components/DashboardMap.vue';
 
 Vue.config.productionTip = false;
 Vue.use(Buefy, {
@@ -31,6 +32,7 @@ let yggdrasil = new Vue({
     delimiters: ['${', '}'],
     el: '#vueApp',
     components: {
-        DashboardArticle
+        DashboardArticle,
+        DashboardMap
     }
 });
