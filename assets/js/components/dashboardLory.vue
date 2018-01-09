@@ -1,31 +1,23 @@
 <template>
-  <div class="lory-container">
-      <div class="tile is-parent is-vertical">
+
+      <div class="tile is-parent">
         <article class="tile is-child box notification">
-          <lory :options="{ enableMouseEvents: true, infinite: 1 }">
-            <item>1</item>
-            <item>2</item>
-            <item>3</item>
-            <item>4</item>
-            <item>5</item>
-            <item>6</item>
+          <div class="lory-container">
+          <lory class="columns is-mobile js_rewind" :options="{ enableMouseEvents: true, infinite: 3, slidesToScroll: 1, slideSpeed: 1000, ease: 'cubic-bezier(0.455, 0.03, 0.515, 0.955)', rewind: true }">
+            <item class="column is-one-quarter-mobile is-3">1</item>
+            <item class="column is-one-quarter-mobile is-3">2</item>
+            <item class="column is-one-quarter-mobile is-3">3</item>
+            <item class="column is-one-quarter-mobile is-3">4</item>
+            <item class="column is-one-quarter-mobile is-3">5</item>
+            <item class="column is-one-quarter-mobile is-3">6</item>
+            <item class="column is-one-quarter-mobile is-3">7</item>
+            <item class="column is-one-quarter-mobile is-3">8</item>
             <prev slot="actions" color="#dbdbdb"></prev>
             <next slot="actions" color="#dbdbdb"></next>
           </lory>
+          </div>
         </article>
-        <article class="tile is-child box notification">
-          <lory class="js_rewind" :options="{ enableMouseEvents: true, infinite: 1, rewind: true }">
-            <item>1</item>
-            <item>2</item>
-            <item>3</item>
-            <item>4</item>
-            <item>5</item>
-            <item>6</item>
-            <prev slot="actions" color="#dbdbdb"></prev>
-            <next slot="actions" color="#dbdbdb"></next>
-          </lory>
-        </article>
-      </div>
+
     </div>
 </template>
 

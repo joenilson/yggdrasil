@@ -75,7 +75,7 @@ label.required:before {
    */
 
   width: 100%;
-
+  height: 140px;
   .slider {
     .frame li {
       height: 140px;
@@ -92,14 +92,13 @@ label.required:before {
   }
 
   .frame {
+
       /**
        * (optional) wrapper width, specifies width of the slider frame.
        */
-      width: 100%;
+      //width: 100%;
+      //position: relative;
 
-      position: relative;
-      font-size: 2em;
-      line-height: 1.5;
       overflow: hidden;
       white-space: nowrap;
   }
@@ -112,10 +111,11 @@ label.required:before {
   .js_slide {
     height: 140px;
     width: 100%;
+    font-size: 1.8em;
+    line-height: 1.5;
     display: inline-block;
     text-align: center;
     position: relative;
-    width: 100%;
     color: black !important;
     top: 50%;
     margin-top: 50%;
