@@ -1,5 +1,5 @@
 <template>
-<div class="tile is-parent is-9">
+<div class="tile is-parent is-6">
   <div class="tile is-child box">
     <div class="card">
       <header class="card-header">
@@ -18,9 +18,9 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a map_country="esp" href="#" class="card-footer-item" @click="showMap">España</a>
-        <a map_country="dom" href="#" class="card-footer-item" @click="showMap">República Dominicana</a>
-        <a map_country="per" href="#" class="card-footer-item" @click="showMap">Perú</a>
+        <template>
+        <a v-for="map in this.mapList" class="card-footer-item" @click="showMap(map.code)">{{map.description}}</a>
+      </template>
       </footer>
     </div>
   </div>
@@ -33,16 +33,19 @@ import * as DatamapPer from './../../vendors/datamaps/datamaps.per'
 let map;
 export default {
   name: 'dashboard-map',
-  props: {
-    map_country: String
+  data: function() {
+    return {
+      mapList: [{'code':'esp','description':'España'},{'code':'dom','description':'República Dominicana'},{'code':'per','description':'Perú'}],
+      mapCode: 'dom'
+    }
   },
   methods: {
     handleWindowResize(event) {
       this.windowWidth = event.currentTarget.innerWidth;
       this.map.resize();
     },
-    showMap() {
-      console.log(this.map_country);
+    showMap(mapCode) {
+      this.mapCode = mapCode;
       var map_div = document.getElementById('map-content');
       if(map_div.firstChild){
         map_div.removeChild(map_div.firstChild);
@@ -50,16 +53,16 @@ export default {
       }
       var Datamap = DatamapDom;
       var map_center = [-70.41667, 18.93333];
-      if(this.map_country === 'esp') {
+      if(mapCode === 'esp') {
         Datamap = DatamapEsp;
         map_center = [-3.7025600,40.4165000];
       }
-      if(this.map_country === 'per') {
+      if(mapCode === 'per') {
         Datamap = DatamapPer;
         map_center = [-76.0000000,-10.0000000];
       }
       this.map = new Datamap({
-        scope: this.map_country,
+        scope: mapCode,
         element: document.getElementById('map-content'),
         responsive: true,
         fills: {
@@ -87,7 +90,7 @@ export default {
   },
   mounted() {
     window.addEventListener('resize', this.handleWindowResize);
-    this.showMap();
+    this.showMap(this.mapCode);
   },
   computed: {
 
