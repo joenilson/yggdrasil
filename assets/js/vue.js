@@ -18,11 +18,9 @@ import Vue from 'vue'
 
 import Buefy from 'buefy'
 import Cleave from 'cleave.js'
-import * as Datamaps from './../vendors/datamaps/datamaps.dom'
 import Bulma from './../vendors/bulmajs/src/bulma'
 import DashboardArticle from './components/dashboardArticle.vue'
 import DashboardMap from './components/dashboardMap.vue'
-import DashboardLory from './components/dashboardLory.vue'
 
 Vue.config.productionTip = false
 Vue.use(Buefy, {
@@ -35,7 +33,6 @@ let yggdrasil = new Vue({
   el: '#vueApp',
   components: {
     DashboardArticle,
-    DashboardMap,
-    DashboardLory
+    DashboardMap
   }
 })

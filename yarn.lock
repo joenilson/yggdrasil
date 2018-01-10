@@ -4234,10 +4234,6 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0"
 
-lory.js@^2.2.1, lory.js@^2.3.4:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/lory.js/-/lory.js-2.3.4.tgz#4974abe1b8240ffffe7a388ec4aa7f047e63e0d6"
-
 loud-rejection@^1.0.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/loud-rejection/-/loud-rejection-1.6.0.tgz#5b46f80147edee578870f086d04821cf998e551f"
@@ -7065,12 +7061,6 @@ vue-loader@^13.6.1:
     vue-hot-reload-api "^2.2.0"
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
-
-vue-lory@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/vue-lory/-/vue-lory-0.0.5.tgz#7b441932e46a91d42533db201cb88df7d2090fe2"
-  dependencies:
-    lory.js "^2.2.1"
 
 vue-router@^2.7.0:
   version "2.8.1"
